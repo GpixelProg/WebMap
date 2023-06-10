@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet Map Example</title>
+    <title>Leaflet Map</title>
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
@@ -25,6 +25,8 @@
 
 <script>
       var map = L.map('map').setView([50.4501, 30.5234], 8);
+      var latitude = null;
+      var longitude = null;
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -38,6 +40,9 @@
         }
 
         var markerLatLng = event.latlng;
+
+        latitude = markerLatLng.lat;
+        longitude = markerLatLng.lng;
 
         // Виведення координат у консоль
         console.log('Latitude: ' + markerLatLng.lat);
