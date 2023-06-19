@@ -51,6 +51,28 @@
         // Додавання нового маркера на карту
         marker = L.marker(markerLatLng).addTo(map);
       });
+
+    // Отримуємо параметри URL
+    var urlParams = new URLSearchParams(window.location.search);
+
+    // Перевіряємо, чи є координати у URL
+    if (urlParams.has('latitude') && urlParams.has('longitude')) {
+        // Отримуємо значення координат з URL
+        var urlLatitude = parseFloat(urlParams.get('latitude'));
+        var urlLongitude = parseFloat(urlParams.get('longitude'));
+
+        // Встановлюємо нову позицію для карти
+        map.setView([urlLatitude, urlLongitude], 8);
+
+        // Встановлюємо відповідну відмітку на карті
+        marker = L.marker([urlLatitude, urlLongitude]).addTo(map);
+    } else {
+        // Встановлюємо позицію за замовчуванням
+        map.setView([50.4501, 30.5234], 8);
+
+        // Виводимо повідомлення про відсутність координат
+        console.log('No coordinates provided in the URL.');
+    }
     </script>
 </body>
 </html>
